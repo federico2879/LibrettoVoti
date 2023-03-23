@@ -40,6 +40,8 @@ public class Controller {
     @FXML
     private TextArea txtRisultato;
     
+	
+
     @FXML
     void initialize(ActionEvent event) {
     	
@@ -69,6 +71,7 @@ public class Controller {
         assert txtCorso != null : "fx:id=\"txtCorso\" was not injected: check your FXML file 'main.fxml'.";
         assert txtRisultato != null : "fx:id=\"txtRisultato\" was not injected: check your FXML file 'main.fxml'.";
         
+        
         for(int i=18; i<=30; i++) {
         	cmbPunti.getItems().add(i);
         }
@@ -76,6 +79,8 @@ public class Controller {
     
     public void setModel(Libretto model) {
     	this.model=model;
+    	this.txtRisultato.setText(model.toString());
+
     }
 }
 

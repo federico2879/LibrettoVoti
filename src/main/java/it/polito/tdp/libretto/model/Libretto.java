@@ -2,13 +2,16 @@ package it.polito.tdp.libretto.model;
 
 import java.util.*;
 
+import it.polito.tdp.libretto.db.VotoDAO;
+
 public class Libretto {
 	
 	private List<Voto> voti ;
 
 	public Libretto() {
-		super();
-		this.voti = new ArrayList<Voto>();
+		
+		VotoDAO dao = new VotoDAO();
+		this.voti = dao.listVoti();
 	}
 	
 	/**

@@ -25,6 +25,7 @@ public class App extends Application {
     	Libretto model = new Libretto();
     	Controller controller = loader.getController();
     	controller.setModel(model);
+    	
 
     	stage.setScene(scene);
         stage.show();
