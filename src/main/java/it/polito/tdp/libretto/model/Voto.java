@@ -1,6 +1,7 @@
 package it.polito.tdp.libretto.model;
 
 import java.time.*;
+//import java.sql.*;
 
 public class Voto implements Comparable<Voto>{
 	

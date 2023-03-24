@@ -4,6 +4,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.libretto.db.VotoDAO;
 import it.polito.tdp.libretto.model.Libretto;
 import it.polito.tdp.libretto.model.Voto;
 import javafx.fxml.FXML;

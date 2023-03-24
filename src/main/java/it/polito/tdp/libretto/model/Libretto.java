@@ -55,6 +55,8 @@ public class Libretto {
 		if(isConflitto(nuovo)||esisteVoto(nuovo))
 			return;
 		this.voti.add(nuovo);
+		VotoDAO dao = new VotoDAO();
+		//dao.createVoto(nuovo);
 	}
 	
 	

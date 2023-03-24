@@ -1,11 +1,13 @@
 package it.polito.tdp.libretto.db;
 
-import java.sql.Connection;
+import java.sql.*;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 
 import it.polito.tdp.libretto.model.Voto;
@@ -51,9 +53,49 @@ public class VotoDAO {
 	
 	public void createVoto(Voto nuovo) {
 		
+		String sql = "INSERT INTO voto('corso', 'punti', 'data') "+
+					 "VALUES (?, ?, ?);";
+		
+		String ssql = "INSERT INTO `voto` (`corso`, `punti`, `data`) VALUES (?, ?, ?);";
+		try {
+			
+			Connection conn =  DBConnect.getConnection();
+			
+			PreparedStatement pst = conn.prepareStatement(ssql);
+			
+			pst.setString(1, nuovo.getCorso());
+			pst.setInt(2, nuovo.getPunti());
+			//pst.setDate(3, Date.valueOf("2002"));
+			
+			pst.executeUpdate();
+			
+			conn.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	public Voto readVoto(String corso) {
+		
+		String sql = "SELECT corso, punti, data FROM voto";
 		Voto v = null;
+		try {
+			Connection conn = DBConnect.getConnection();
+		
+			Statement st = conn.createStatement();
+			
+			ResultSet res = st.executeQuery(sql);
+			
+			while(res.next()) {
+				if(res.getString("corso").compareTo("Chimica")==0)
+					v = new Voto(res.getString("corso"), res.getInt("punti"), res.getDate("data").toLocalDate());
+			}
+			conn.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		
+		
 		return v;
 	}
 	
